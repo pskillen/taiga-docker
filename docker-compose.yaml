@@ -23,7 +23,7 @@ services:
   taigaback:
     build:
       context: taiga-back
-    image: nhsmdu/taiga-back:${TAIGA_VERSION}
+    image: nhsmdu/taiga-back:3.4.5
     links:
       - database:postgres
     environment:
@@ -43,7 +43,7 @@ services:
   taigafront:
     build:
       context: taiga-front
-    image: nhsmdu/taiga-front:${TAIGA_VERSION}
+    image: nhsmdu/taiga-front:3.4.5
     depends_on:
       - taigaback
     networks:

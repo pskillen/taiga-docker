@@ -13,8 +13,7 @@ RUN locale-gen en_US.UTF-8 \
 
 WORKDIR /usr/src/app
 
-ARG TAIGA_VERSION
-RUN git clone -b $TAIGA_VERSION \
+RUN git clone -b 3.4.5 \
               --single-branch \
               --depth 1 \
               https://github.com/taigaio/taiga-back.git taiga-back

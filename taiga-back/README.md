@@ -1,6 +1,6 @@
 # Taiga Back-end Docker Image
 
-This Docker container helps you to run your own [Taiga](https://taiga.io) instance. It should be run in conjunction
+This Docker image helps you to run your own [Taiga](https://taiga.io) instance. It should be run in conjunction
 with a suitable front end (e.g. [nhsmdu/taiga-front](https://hub.docker.com/r/nhsmdu/taiga-front/)) and a Postgres DB.
 
 See the repository at https://github.com/pskillen/taiga-docker for full information

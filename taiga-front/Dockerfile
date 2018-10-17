@@ -6,8 +6,7 @@ WORKDIR /build
 RUN apt-get update \
  && apt-get install git -y
 
-ARG TAIGA_VERSION
-RUN git clone -b $TAIGA_VERSION-stable \
+RUN git clone -b 3.4.5-stable \
               --single-branch \
               --depth 1 \
               https://github.com/taigaio/taiga-front-dist taiga-front

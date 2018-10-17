@@ -1,6 +1,6 @@
 # Taiga Docker Images
 
-These Docker containers help you to run your own [Taiga](https://taiga.io) instance.
+These Docker images help you to run your own [Taiga](https://taiga.io) instance.
 
 See the repository at https://github.com/pskillen/taiga-docker for full information
 
@@ -12,13 +12,12 @@ Files:
 
 ## Building
 
-You must set the `TAIGA_VERSION` env var **AND** build arg to the name of the tag you want to build (minus any `-stable`
-modifiers - these are applied by the relevant `Dockerfile`)
+```bash
+docker-compose build
 
-```
-# NB: set env var AND build arg!
-export TAIGA_VERSION=3.4.5
-docker-compose build --build-arg TAIGA_VERSION=3.4.5
+# or
+
+docker-compose up --build
 ```
 
 ## Maintainer Info
