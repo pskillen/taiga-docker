@@ -6,8 +6,8 @@ See the repository at https://github.com/pskillen/taiga-docker for full informat
 
 Files:
 
-* [Front end](taiga-front/README.md)
-* [Back end](taiga-front/README.md)
+* [Front end](taiga-front/)
+* [Back end](taiga-front/)
 * [docker-compose](docker-compose.yaml)
 
 ## Building
