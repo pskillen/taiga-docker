@@ -20,7 +20,7 @@ services:
     networks:
       - database-net
 
-  taigaback:
+  taiga-back:
     build:
       context: taiga-back
     image: nhsmdu/taiga-back:3.4.5
@@ -31,6 +31,9 @@ services:
       - DB_NAME=taiga
       - DB_USER=taiga
       - DB_PASSWORD=taiga
+      - STATIC_URL=http://localhost:8080/static/
+      - MEDIA_URL=http://localhost:8080/media/
+      - SECRET_KEY=development-insecure
     networks:
       - database-net
       - web-net
@@ -40,18 +43,18 @@ services:
       timeout: 10s
       retries: 3
 
-  taigafront:
+  taiga-front:
     build:
       context: taiga-front
     image: nhsmdu/taiga-front:3.4.5
     depends_on:
-      - taigaback
+      - taiga-back
     networks:
       - web-net
     ports:
       - 127.0.0.1:8080:80
     environment:
-      - API_INTERNAL_URL=http://taigaback:8000
+      - API_INTERNAL_URL=http://taiga-back:8000
       - API_PUBLIC_URL=http://localhost:8080
     healthcheck:
       test: ["CMD", "wget", "-O", "/dev/null", "http://127.0.0.1:80/"]

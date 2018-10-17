@@ -14,6 +14,14 @@ See the repository at https://github.com/pskillen/taiga-docker for full informat
 TODO:
 * `docker run ...` command
 
+TODO: Explain why we have to run the following manually...
+
+```
+# Inside the container
+python manage.py loaddata initial_user
+python manage.py loaddata initial_project_templates
+```
+
 Default credentials: **admin** / **123123**
 
 ## Compose file

@@ -7,7 +7,7 @@ COPY etc/default.locale /etc/default/locale
 
 RUN apt-get update \
  && apt-get autoremove -y \
- && apt-get install locales curl poppler-utils apt-transport-https git -y
+ && apt-get install locales curl poppler-utils apt-transport-https git gettext -y
 RUN locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales
 

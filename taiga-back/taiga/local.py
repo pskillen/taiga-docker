@@ -16,17 +16,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .development import *
+from .common import *
 
 #########################################
 ## GENERIC
 #########################################
 
-# DEBUG = False
-
-# ADMINS = (
-#    ("Admin", "example@example.com"),
-# )
+DEBUG = (os.getenv("DEBUG", "False") == "True")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DATABASES = {
     "default": {
@@ -34,7 +31,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "taiga"),
         "HOST": os.getenv("DB_HOST", "postgres"),
         "USER": os.getenv("DB_USER", "taiga"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "thisisthetaigapassword"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "taiga"),
     }
 }
 
@@ -51,10 +48,9 @@ SITES = {
     },
 }
 
-# SITE_ID = "api"
+MEDIA_URL = os.getenv("MEDIA_URL")
+STATIC_URL = os.getenv("STATIC_URL")
 
-# MEDIA_ROOT = '/home/taiga/media'
-# STATIC_ROOT = '/home/taiga/static'
 
 
 #########################################
@@ -86,11 +82,11 @@ SITES = {
 #########################################
 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-# CHANGE_NOTIFICATIONS_MIN_INTERVAL = 300 #seconds
+CHANGE_NOTIFICATIONS_MIN_INTERVAL = 300 #seconds
 
 # EMAIL SETTINGS EXAMPLE
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = (os.getenv("EMAIL_USE_TLS", "True") == "True") # convert to boolean
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
@@ -109,13 +105,13 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 ## REGISTRATION
 #########################################
 
-# PUBLIC_REGISTER_ENABLED = True
+PUBLIC_REGISTER_ENABLED = (os.getenv("PUBLIC_REGISTER_ENABLED", "False") == "True") # convert to boolean
 
 # LIMIT ALLOWED DOMAINS FOR REGISTER AND INVITE
 # None or [] values in USER_EMAIL_ALLOWED_DOMAINS means allow any domain
 # USER_EMAIL_ALLOWED_DOMAINS = None
 
-# PUCLIC OR PRIVATE NUMBER OF PROJECT PER USER
+# PUBLIC OR PRIVATE NUMBER OF PROJECT PER USER
 # MAX_PRIVATE_PROJECTS_PER_USER = None # None == no limit
 # MAX_PUBLIC_PROJECTS_PER_USER = None # None == no limit
 # MAX_MEMBERSHIPS_PRIVATE_PROJECTS = None # None == no limit
@@ -150,7 +146,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 ## STATS
 #########################################
 
-# STATS_ENABLED = False
+STATS_ENABLED = (os.getenv("STATS_ENABLED", "True") == "True") # convert to boolean
 # FRONT_SITEMAP_CACHE_TIMEOUT = 60*60  # In second
 
 

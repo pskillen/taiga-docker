@@ -4,8 +4,13 @@ set -ex
 
 # Running migrations
 python manage.py migrate --noinput
-python manage.py loaddata initial_user
-python manage.py loaddata initial_project_templates
+
+# Can't add these to the docker image - they'd cause a massive security hole every time the container restarted
+#python manage.py loaddata initial_user
+#python manage.py loaddata initial_project_templates
+
+python manage.py compilemessages
+python manage.py collectstatic --noinput
 
 # Start Gunicorn processes
 echo Starting Gunicorn.
