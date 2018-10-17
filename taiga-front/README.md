@@ -18,7 +18,7 @@ Default credentials: **admin** / **123123**
 
 ## Compose file
 
-See [here](https://github.com/pskillen/taiga-docker/blob/master/docker-compose.yml) for the latest compose file
+See [here](https://github.com/pskillen/taiga-docker/blob/master/docker-compose.yaml) for the latest compose file
 
 ## Env vars
 
