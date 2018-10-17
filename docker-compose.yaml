@@ -1,0 +1,72 @@
+---
+version: '3.5'
+
+services:
+
+  database:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_USER=taiga
+      - POSTGRES_PASSWORD=taiga
+      - POSTGRES_DB=taiga
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - database-net
+
+  taigaback:
+    build:
+      context: taiga-back
+    image: nhsmdu/taiga-back:${TAIGA_VERSION}
+    links:
+      - database:postgres
+    environment:
+      - DB_HOST=database
+      - DB_NAME=taiga
+      - DB_USER=taiga
+      - DB_PASSWORD=taiga
+    networks:
+      - database-net
+      - web-net
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "http://127.0.0.1:8000/api/v1/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  taigafront:
+    build:
+      context: taiga-front
+    image: nhsmdu/taiga-front:${TAIGA_VERSION}
+    depends_on:
+      - taigaback
+    networks:
+      - web-net
+    ports:
+      - 127.0.0.1:8080:80
+    environment:
+      - API_INTERNAL_URL=http://taigaback:8000
+      - API_PUBLIC_URL=http://localhost:8080
+    healthcheck:
+      test: ["CMD", "wget", "-O", "/dev/null", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+
+volumes:
+  pgdata:
+    driver: local
+
+
+networks:
+  database-net:
+    driver: bridge
+  web-net:
+    driver: bridge

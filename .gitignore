@@ -1,0 +1,8 @@
+
+# Intellij files
+.idea/
+*.iml
+
+# Build files
+taiga-front/taiga-front-dist/
+taiga-back/taiga-back/
