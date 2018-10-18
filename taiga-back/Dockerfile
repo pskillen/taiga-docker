@@ -28,4 +28,6 @@ RUN pip3 install -r requirements.txt \
 COPY taiga/local.py settings/local.py
 COPY run.sh .
 
+ENV GUNICORN_TIMEOUT 30
+
 CMD ["./run.sh"]

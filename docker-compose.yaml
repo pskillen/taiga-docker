@@ -27,6 +27,7 @@ services:
     links:
       - database:postgres
     environment:
+      - GUNICORN_TIMEOUT=120
       - DB_HOST=database
       - DB_NAME=taiga
       - DB_USER=taiga

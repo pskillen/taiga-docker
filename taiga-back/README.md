@@ -57,3 +57,4 @@ See [here](https://github.com/pskillen/taiga-docker/blob/master/docker-compose.y
 | JIRA_CONSUMER_KEY | No | (empty) | Name of cert? |
 | JIRA_PRIVATE_CERT | No | (empty) | Contents of private key file (not filename) |
 | JIRA_PUBLIC_CERT | No | (empty) | Contents of public key file (not filename) |
+| GUNICORN_TIMEOUT | No | 30 | Gunicorn worker timeout (seconds) |
