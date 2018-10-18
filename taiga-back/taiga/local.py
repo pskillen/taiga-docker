@@ -37,19 +37,19 @@ DATABASES = {
 
 SITES = {
     "api": {
-        "scheme": "http",
-        "domain": "localhost:8000",
+        "scheme": os.getenv("API_PUBLIC_PROTOCOL", "http"),
+        "domain": os.getenv("API_PUBLIC_DOMAIN", "localhost:8000"),
         "name": "api"
     },
     "front": {
-        "scheme": os.getenv("BASE_PROTOCOL"),
-        "domain": os.getenv("BASE_DOMAIN"),
+        "scheme": os.getenv("FRONTEND_PUBLIC_PROTOCOL", "http"),
+        "domain": os.getenv("FRONTEND_PUBLIC_DOMAIN", "localhost:8000"),
         "name": "front"
     },
 }
 
-MEDIA_URL = os.getenv("MEDIA_URL")
-STATIC_URL = os.getenv("STATIC_URL")
+MEDIA_URL = os.getenv("MEDIA_URL", "http://localhost:8000/media/")
+STATIC_URL = os.getenv("STATIC_URL", "http://localhost:8000/static/")
 
 
 
@@ -71,8 +71,8 @@ STATIC_URL = os.getenv("STATIC_URL")
 #    "user-update": None,
 # }
 
-# This list should containt:
-#  - Tiga users IDs
+# This list should contain:
+#  - Taiga users IDs
 #  - Valid clients IP addresses (X-Forwarded-For header)
 # REST_FRAMEWORK["DEFAULT_THROTTLE_WHITELIST"] = []
 
