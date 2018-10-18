@@ -18,6 +18,8 @@
   "maxUploadFileSize": null,
   "contribPlugins": [],
   "tribeHost": null,
-  "importers": [],
+  "importers": [
+    "jira"
+  ],
   "gravatar": true
 }

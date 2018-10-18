@@ -7,7 +7,7 @@ See the repository at https://github.com/pskillen/taiga-docker for full informat
 
 ## Supported tags
 
-* `3.4.5` from [taiga-front @ 3.5.4](https://github.com/taigaio/taiga-front-dist/tree/3.4.5-stable)
+* `3.4.5-r5` from [taiga-front @ 3.5.4](https://github.com/taigaio/taiga-front-dist/tree/3.4.5-stable)
 
 ## Quick start
 

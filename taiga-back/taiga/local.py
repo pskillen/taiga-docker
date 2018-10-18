@@ -28,10 +28,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
         "NAME": os.getenv("DB_NAME", "taiga"),
-        "HOST": os.getenv("DB_HOST", "postgres"),
-        "USER": os.getenv("DB_USER", "taiga"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "taiga"),
+        "USER": os.getenv("DB_USER", "postgres"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
     }
 }
 
@@ -50,8 +51,6 @@ SITES = {
 
 MEDIA_URL = os.getenv("MEDIA_URL", "http://localhost:8000/media/")
 STATIC_URL = os.getenv("STATIC_URL", "http://localhost:8000/static/")
-
-
 
 #########################################
 ## THROTTLING
@@ -82,11 +81,11 @@ STATIC_URL = os.getenv("STATIC_URL", "http://localhost:8000/static/")
 #########################################
 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-CHANGE_NOTIFICATIONS_MIN_INTERVAL = 300 #seconds
+CHANGE_NOTIFICATIONS_MIN_INTERVAL = 300  # seconds
 
 # EMAIL SETTINGS EXAMPLE
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = (os.getenv("EMAIL_USE_TLS", "True") == "True") # convert to boolean
+EMAIL_USE_TLS = (os.getenv("EMAIL_USE_TLS", "True") == "True")  # convert to boolean
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
@@ -105,7 +104,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 ## REGISTRATION
 #########################################
 
-PUBLIC_REGISTER_ENABLED = (os.getenv("PUBLIC_REGISTER_ENABLED", "False") == "True") # convert to boolean
+PUBLIC_REGISTER_ENABLED = (os.getenv("PUBLIC_REGISTER_ENABLED", "False") == "True")  # convert to boolean
 
 # LIMIT ALLOWED DOMAINS FOR REGISTER AND INVITE
 # None or [] values in USER_EMAIL_ALLOWED_DOMAINS means allow any domain
@@ -146,7 +145,7 @@ PUBLIC_REGISTER_ENABLED = (os.getenv("PUBLIC_REGISTER_ENABLED", "False") == "Tru
 ## STATS
 #########################################
 
-STATS_ENABLED = (os.getenv("STATS_ENABLED", "True") == "True") # convert to boolean
+STATS_ENABLED = (os.getenv("STATS_ENABLED", "True") == "True")  # convert to boolean
 # FRONT_SITEMAP_CACHE_TIMEOUT = 60*60  # In second
 
 
@@ -181,12 +180,12 @@ STATS_ENABLED = (os.getenv("STATS_ENABLED", "True") == "True") # convert to bool
 
 # Configuration for the Jira importer
 # Remember to enable it in the front client too.
-# IMPORTERS["jira"] = {
-#    "active": True, # Enable or disable the importer
-#    "consumer_key": "XXXXXX_get_a_valid_consumer_key_from_jira_XXXXXX",
-#    "cert": "XXXXXX_get_a_valid_cert_from_jira_XXXXXX",
-#    "pub_cert": "XXXXXX_get_a_valid_pub_cert_from_jira_XXXXXX"
-# }
+IMPORTERS["jira"] = {
+    "active": (os.getenv("JIRA_IMPORTER_ACTIVE", "False") == "True"),  # Convert to boolean
+    "consumer_key": os.getenv("JIRA_CONSUMER_KEY"),
+    "cert": os.getenv("JIRA_PRIVATE_CERT"),
+    "pub_cert": os.getenv("JIRA_PUBLIC_CERT")
+}
 
 # Configuration for the Asane importer
 # Remember to enable it in the front client too.
